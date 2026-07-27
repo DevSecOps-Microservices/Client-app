@@ -92,23 +92,10 @@ jobs:
 
       - name: Push Docker image
         run: |
+          IMAGE_TAG=v1.${{ github.run_number }}-${GITHUB_SHA::7}
+
           docker tag client-app:latest ghcr.io/devsecops-microservices/client-app:latest
+          docker tag client-app:latest ghcr.io/devsecops-microservices/client-app:${IMAGE_TAG}
+
           docker push ghcr.io/devsecops-microservices/client-app:latest
-
-      - name: Deploy client-app
-        run: |
-          docker stop client-app || true
-          docker rm client-app || true
-          docker pull ghcr.io/devsecops-microservices/client-app:latest
-          docker run -d \
-            --name client-app \
-            -p 3000:3000 \
-            --restart unless-stopped \
-            ghcr.io/devsecops-microservices/client-app:latest
-          sleep 10
-          echo "client-app deployed successfully"
-
-      - name: Verify deployment
-        run: |
-          docker ps | grep client-app
-          echo "Container is running"
+          docker push ghcr.io/devsecops-microservices/client-app:${IMAGE_TAG}
