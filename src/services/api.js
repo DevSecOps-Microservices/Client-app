@@ -1,7 +1,7 @@
 import axios from 'axios';
 import keycloak from '../keycloak';
 
-const API_BASE = process.env.REACT_APP_API_URL || '';
+const API_BASE = process.env.REACT_APP_API_URL || 'http://192.168.11.121:8880';
 
 const api = axios.create({ baseURL: API_BASE });
 

@@ -7,7 +7,7 @@ import IncidentCreate from './pages/IncidentCreate';
 import IncidentDetail from './pages/IncidentDetail';
 import ChatPage from './pages/ChatPage';
 
-const ADMIN_URL = process.env.REACT_APP_ADMIN_URL || 'http://localhost:4200';
+const ADMIN_URL = process.env.REACT_APP_ADMIN_URL || 'http://192.168.11.121:4200';
 
 function ProtectedRoute({ children }) {
   const { keycloak, initialized } = useKeycloak();
